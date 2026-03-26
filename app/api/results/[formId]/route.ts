@@ -3,10 +3,10 @@ import { getResponses } from "@/lib/storage";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { formId: string } }
+  context: { params: Promise<{ formId: string }> }
 ) {
   try {
-    const { formId } = await params;
+    const { formId } = await context.params;
     const responses = await getResponses(formId);
     return NextResponse.json({ responses });
   } catch (error) {

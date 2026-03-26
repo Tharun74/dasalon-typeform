@@ -185,7 +185,7 @@ export default function BuilderPage() {
                   />
                   <Select
                     value={q.type}
-                    onValueChange={(val) => updateQuestion(q.id, { type: val as QuestionType })}
+                    onValueChange={(val: string) => updateQuestion(q.id, { type: val as QuestionType })}
                   >
                     <SelectTrigger className="h-11 rounded-md border border-border bg-white px-3 text-sm shadow-sm focus:ring-2 focus:ring-primary/20 w-full">
                       <SelectValue placeholder="Question Type" />
@@ -240,7 +240,7 @@ export default function BuilderPage() {
                     <Switch
                       id={`required-${q.id}`}
                       checked={q.required}
-                      onCheckedChange={(val) => updateQuestion(q.id, { required: val })}
+                      onCheckedChange={(val: boolean) => updateQuestion(q.id, { required: val })}
                     />
                     <span className="text-sm text-muted-foreground">Required</span>
                   </div>

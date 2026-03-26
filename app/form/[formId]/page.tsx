@@ -154,7 +154,7 @@ export default function PublicFormPage() {
                 {q.type === "multiple_choice" && q.options && (
                   <RadioGroup
                     value={answers[q.id] || ""}
-                    onValueChange={(val) => handleInputChange(q.id, val)}
+                    onValueChange={(val: string) => handleInputChange(q.id, val)}
                     className="space-y-3"
                   >
                     {q.options.map((opt) => (

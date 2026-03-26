@@ -3,10 +3,10 @@ import { getForm } from "@/lib/storage";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { formId: string } }
+  context: { params: Promise<{ formId: string }> }
 ) {
   try {
-    const { formId } = await params;
+    const { formId } = await context.params;
     const form = await getForm(formId);
     if (!form) {
       return NextResponse.json({ error: "Form not found" }, { status: 404 });
