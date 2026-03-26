@@ -1,8 +1,10 @@
 import fs from "fs/promises";
 import path from "path";
+import os from "os";
 import { Form, Response } from "./types";
 
-const dataDir = path.join(process.cwd(), "data");
+const isVercel = process.env.VERCEL === "1" || process.env.NODE_ENV === "production";
+const dataDir = isVercel ? path.join(os.tmpdir(), "dasalon_data") : path.join(process.cwd(), "data");
 const formsFile = path.join(dataDir, "forms.json");
 const responsesFile = path.join(dataDir, "responses.json");
 
