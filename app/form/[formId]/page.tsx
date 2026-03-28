@@ -158,7 +158,7 @@ export default function PublicFormPage() {
                     className="space-y-3"
                   >
                     {q.options.map((opt) => (
-                      <div key={opt.id} className="flex items-center space-x-3 bg-secondary/30 border border-transparent hover:border-border p-3 rounded-md transition-colors cursor-pointer" onClick={() => handleInputChange(q.id, opt.id)}>
+                      <div key={opt.id} className="flex items-center space-x-3 bg-secondary/30 border border-transparent hover:border-border p-3 rounded-md transition-colors">
                         <RadioGroupItem value={opt.id} id={`opt-${opt.id}`} className="bg-white" />
                         <Label htmlFor={`opt-${opt.id}`} className="text-sm cursor-pointer flex-1">{opt.value}</Label>
                       </div>
@@ -170,17 +170,15 @@ export default function PublicFormPage() {
                     {q.options.map((opt) => {
                       const checked = (answers[q.id] || []).includes(opt.id);
                       return (
-                        <div key={opt.id} className="flex items-center space-x-3 bg-secondary/30 border border-transparent hover:border-border p-3 rounded-md transition-colors cursor-pointer"
-                          onClick={() => {
-                            const cur = answers[q.id] || [];
-                            const next = checked ? cur.filter((id: string) => id !== opt.id) : [...cur, opt.id];
-                            handleInputChange(q.id, next);
-                          }}
-                        >
+                        <div key={opt.id} className="flex items-center space-x-3 bg-secondary/30 border border-transparent hover:border-border p-3 rounded-md transition-colors">
                           <Checkbox
                             id={`opt-${opt.id}`}
                             checked={checked}
-                            onCheckedChange={() => { /* Handled by div click */ }}
+                            onCheckedChange={(c) => { 
+                              const cur = answers[q.id] || [];
+                              const next = c ? [...cur, opt.id] : cur.filter((id: string) => id !== opt.id);
+                              handleInputChange(q.id, next);
+                            }}
                             className="bg-white"
                           />
                           <Label htmlFor={`opt-${opt.id}`} className="text-sm cursor-pointer flex-1">{opt.value}</Label>

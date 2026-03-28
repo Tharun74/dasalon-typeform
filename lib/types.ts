@@ -7,6 +7,9 @@ export type QuestionType =
   | "yes_no"
   | "number"
   | "file_upload"
+  | "email"
+  | "url"
+  | "phone"
   | "date_picker";
 
 export interface Option {
@@ -18,6 +21,8 @@ export interface Question {
   id: string;
   type: QuestionType;
   title: string;
+  description?: string;
+  showDescription?: boolean;
   required: boolean;
   options?: Option[]; // For MCQ, Multi-select
 }

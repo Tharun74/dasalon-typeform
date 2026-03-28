@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getForm } from "@/lib/storage";
+import connectToDatabase from "@/lib/mongodb";
+import Form from "@/lib/models/Form";
 
 export async function GET(
   req: NextRequest,
@@ -7,12 +8,14 @@ export async function GET(
 ) {
   try {
     const { formId } = await context.params;
-    const form = await getForm(formId);
+    await connectToDatabase();
+    const form = await Form.findOne({ id: formId });
     if (!form) {
       return NextResponse.json({ error: "Form not found" }, { status: 404 });
     }
     return NextResponse.json({ form });
   } catch (error) {
+    console.error("Fetch form error:", error);
     return NextResponse.json({ error: "Failed to fetch form" }, { status: 500 });
   }
 }

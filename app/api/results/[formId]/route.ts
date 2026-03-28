@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getResponses } from "@/lib/storage";
+import connectToDatabase from "@/lib/mongodb";
+import Submission from "@/lib/models/Submission";
 
 export async function GET(
   req: NextRequest,
@@ -7,9 +8,11 @@ export async function GET(
 ) {
   try {
     const { formId } = await context.params;
-    const responses = await getResponses(formId);
+    await connectToDatabase();
+    const responses = await Submission.find({ formId }).sort({ createdAt: -1 });
     return NextResponse.json({ responses });
   } catch (error) {
+    console.error("Fetch responses error:", error);
     return NextResponse.json({ error: "Failed to fetch responses" }, { status: 500 });
   }
 }

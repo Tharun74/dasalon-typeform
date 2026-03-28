@@ -55,23 +55,23 @@
   color-scheme: light;
 
   --background: #ffffff;
-  --foreground: #002147;
+  --foreground: #111827;
   --card: #ffffff;
-  --card-foreground: #002147;
+  --card-foreground: #111827;
 
-  --primary: #B751FB;
+  --primary: #bd5efa;
   --primary-foreground: #ffffff;
   --primary-200: #e9d5ff;
 
-  --secondary: #f3f4f6;
-  --secondary-foreground: #9CA3AF;
+  --secondary: #f9fafb;
+  --secondary-foreground: #4b5563;
   
   --muted: #f3f4f6;
-  --muted-foreground: #9CA3AF;
+  --muted-foreground: #6b7280;
 
-  --border: #9CA3AF;
+  --border: #e5e7eb;
   --input: #e5e7eb;
-  --ring: #B751FB;
+  --ring: #bd5efa;
 
   --radius: 0.5rem;
 }
